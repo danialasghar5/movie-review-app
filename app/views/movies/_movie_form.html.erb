@@ -1,0 +1,22 @@
+<%= simple_form_for @movie do |f| %>
+  <% if @movie.errors.any? %>
+    <div id="error_explanation">
+    <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved.</h2>
+
+    <ul>
+      <% @movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+
+    </div>
+  <% end %>
+  <%= f.input :title , class: "form-control form-control-inline"%>
+  <%= f.input :description, as: :text, :input_html => { :cols => 5, :rows => 8 } %>
+  <%= f.input :movie_length %>
+  <%= f.input :director %>
+  <%= f.input :rating %>
+  <div class="form-group"><%= f.file_field :image, class: "form-control-file" %></div>
+
+  <%= f.button :submit %>
+<% end %>

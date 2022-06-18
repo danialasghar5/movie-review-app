@@ -1,0 +1,25 @@
+<center><h1>All Movies List</h1></center>
+<% if @movies.all.count.zero? %>
+  <center><h1>No Movies Here!</h1></center>
+<% end %>
+
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Your Favourite Movies Reviewed!</h1>
+    <p>Ridiculus mus mauris vitae ultricies. Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Adipiscing elit ut aliquam purus sit amet luctus venenatis. Id aliquet risus feugiat in ante</p>
+    <p><%= link_to "Sign Up to write a Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+
+  </div>
+<% end %>
+
+<div class="row">
+  <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <% if movie.image.attached? %>
+        <div class="thumnail">
+          <a href="/movies/<%= movie.id %>"><img class="image" src="<%= (url_for(movie.image)) %>"></a>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
